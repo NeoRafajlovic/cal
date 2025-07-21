@@ -8,16 +8,25 @@
   </head>
   <body>
     <div class="container">
-      <center><h2>Track Your Cals</h2></center>
+      <center><h2>Track Your Cals & Macros</h2></center>
       <hr />
       <ul id="itemList"></ul>
-      <h3>Total Calories Consumed: <span id="totalCal">0</span> kcal(s)</h3>
+      <h3>
+        Total Calories: <span id="totalCal">0</span> kcal<br />
+        Total Protein: <span id="totalProtein">0</span> g<br />
+        Total Carbs: <span id="totalCarbs">0</span> g<br />
+        Total Fat: <span id="totalFat">0</span> g
+      </h3>
       <hr />
       <br />
       <input type="text" placeholder="Item Name" id="itemName" />
-      <input type="text" placeholder="Calories (kcal)" id="itemCal" />
+      <input type="number" placeholder="Calories (kcal)" id="itemCal" />
+      <input type="number" placeholder="Protein (g)" id="itemProtein" />
+      <input type="number" placeholder="Carbs (g)" id="itemCarbs" />
+      <input type="number" placeholder="Fat (g)" id="itemFat" />
       <input type="submit" value="Add" id="itemSubmit" />
       <button id="resetButton">Reset</button>
+
       <script src="main.js"></script>
     </div>
   </body>
