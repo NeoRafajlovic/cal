@@ -17,10 +17,10 @@ let savedItems = JSON.parse(localStorage.getItem("items")) || [];
 
 let totals = savedItems.reduce(
   (acc, item) => {
-    acc.cal += item.cal;
-    acc.protein += item.protein;
-    acc.carbs += item.carbs;
-    acc.fat += item.fat;
+    acc.cal += Number(item.cal) || 0;
+    acc.protein += Number(item.protein) || 0;
+    acc.carbs += Number(item.carbs) || 0;
+    acc.fat += Number(item.fat) || 0;
     return acc;
   },
   { cal: 0, protein: 0, carbs: 0, fat: 0 }
@@ -30,7 +30,7 @@ updateTotalsDisplay();
 
 savedItems.forEach((item) => {
   const li = document.createElement("li");
-  li.textContent = `${item.name} - ${item.cal} kcal, P: ${item.protein}g, C: ${item.carbs}g, F: ${item.fat}g`;
+  li.textContent = formatItemText(item);
   itemList.append(li);
 });
 
@@ -38,16 +38,18 @@ itemSubmit.addEventListener("click", (e) => {
   e.preventDefault();
 
   const name = itemName.value.trim();
-  const cal = parseInt(itemCal.value);
-  const protein = parseInt(itemProtein.value);
-  const carbs = parseInt(itemCarbs.value);
-  const fat = parseInt(itemFat.value);
+  if (!name) return; // Require a name
 
-  if (!name || isNaN(cal) || isNaN(protein) || isNaN(carbs) || isNaN(fat))
-    return;
+  // Parse numbers or default to 0
+  const cal = Number(itemCal.value) || 0;
+  const protein = Number(itemProtein.value) || 0;
+  const carbs = Number(itemCarbs.value) || 0;
+  const fat = Number(itemFat.value) || 0;
+
+  const item = { name, cal, protein, carbs, fat };
 
   const li = document.createElement("li");
-  li.textContent = `${name} - ${cal} kcal, P: ${protein}g, C: ${carbs}g, F: ${fat}g`;
+  li.textContent = formatItemText(item);
   itemList.append(li);
 
   totals.cal += cal;
@@ -56,7 +58,7 @@ itemSubmit.addEventListener("click", (e) => {
   totals.fat += fat;
   updateTotalsDisplay();
 
-  savedItems.push({ name, cal, protein, carbs, fat });
+  savedItems.push(item);
   localStorage.setItem("items", JSON.stringify(savedItems));
 
   itemName.value = "";
@@ -85,4 +87,13 @@ function updateTotalsDisplay() {
   totalProtein.innerText = totals.protein;
   totalCarbs.innerText = totals.carbs;
   totalFat.innerText = totals.fat;
+}
+
+// Helper to format the item text, skipping zero or missing macros
+function formatItemText(item) {
+  let parts = [`${item.name} - ${item.cal} kcal`];
+  if (item.protein) parts.push(`P: ${item.protein}g`);
+  if (item.carbs) parts.push(`C: ${item.carbs}g`);
+  if (item.fat) parts.push(`F: ${item.fat}g`);
+  return parts.join(", ");
 }
