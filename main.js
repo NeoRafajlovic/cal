@@ -90,6 +90,14 @@ saveToCatalogue.addEventListener("click", () => {
 
   const li = createCatalogueItem(item);
   catalogueList.append(li);
+
+  // Clear inputs after saving to catalogue
+  itemName.value = "";
+  itemCal.value = "";
+  itemProtein.value = "";
+  itemCarbs.value = "";
+  itemFat.value = "";
+  itemName.focus();
 });
 
 clearCatalogueButton.addEventListener("click", () => {
