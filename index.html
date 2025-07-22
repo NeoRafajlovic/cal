@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Calorie Tracker by Neo Rafajlovic</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -10,15 +10,19 @@
     <div class="container">
       <center><h2>Track Your Cals & Macros</h2></center>
       <hr />
+
       <ul id="itemList"></ul>
+
       <h3>
         Total Calories: <span id="totalCal">0</span> kcal<br />
         Total Protein: <span id="totalProtein">0</span> g<br />
         Total Carbs: <span id="totalCarbs">0</span> g<br />
         Total Fat: <span id="totalFat">0</span> g
       </h3>
+
       <hr />
       <br />
+
       <input type="text" placeholder="Item Name" id="itemName" />
       <input type="number" placeholder="Calories (kcal)" id="itemCal" />
       <input
@@ -28,8 +32,14 @@
       />
       <input type="number" placeholder="Carbs (g) (optional)" id="itemCarbs" />
       <input type="number" placeholder="Fat (g) (optional)" id="itemFat" />
+
       <input type="submit" value="Add" id="itemSubmit" />
       <button id="resetButton">Reset</button>
+      <button id="saveToCatalogue">Save to Catalogue</button>
+
+      <h3>Catalogue (click to add to log)</h3>
+      <ul id="catalogueList" class="catalogue-list"></ul>
+      <button id="clearCatalogueButton">Clear Catalogue</button>
 
       <script src="main.js"></script>
     </div>
