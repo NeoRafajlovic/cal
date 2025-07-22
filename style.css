@@ -12,12 +12,13 @@ body {
 
 .container {
   padding: 20px;
-  height: 650px;
+  min-height: 700px;
   width: 400px;
   background-color: rgb(240, 240, 240);
   border: 2px solid grey;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 h2 {
@@ -39,11 +40,33 @@ h3 {
   border-radius: 5px;
 }
 
-.container ul li {
+/* Make each li a flex container for remove button */
+#itemList li,
+.catalogue-list li {
   padding: 5px;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Remove button style (for both lists) */
+.remove-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  margin-left: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Inputs and buttons */
 input[type="text"],
 input[type="number"],
 input[type="submit"],
@@ -53,6 +76,7 @@ button {
   width: calc(100% - 20px);
   border: 1px solid #999;
   border-radius: 4px;
+  font-size: 1rem;
 }
 
 input[type="submit"],
